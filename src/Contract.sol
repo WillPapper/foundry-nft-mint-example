@@ -26,9 +26,7 @@ contract NFTMint is ERC721 {
     }
 
     function multiMint(uint256 amount) public {
-        for (uint256 i = 0; i < amount; i++) {
-            mint();
-        }
+        // Your task is to fill this in!
     }
 
     function _baseURI() internal pure override returns (string memory) {
