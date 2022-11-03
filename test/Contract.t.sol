@@ -6,18 +6,21 @@ import "forge-std/Test.sol";
 import "src/Contract.sol";
 
 contract TestContract is Test {
-    Contract c;
+    NFTMint nftMint;
 
     function setUp() public {
-        c = new Contract();
+        nftMint = new NFTMint();
     }
 
-    function testBar() public {
-        assertEq(uint256(1), uint256(1), "ok");
+    function testMint() public {
+        assertEq(nftMint.totalSupply(), 0);
+        nftMint.mint();
+        assertEq(nftMint.totalSupply(), 1);
     }
 
-    function testFoo(uint256 x) public {
-        vm.assume(x < type(uint128).max);
-        assertEq(x + x, x * 2);
+    function testMultiMint() public {
+        assertEq(nftMint.totalSupply(), 0);
+        nftMint.multiMint(10);
+        assertEq(nftMint.totalSupply(), 10);
     }
 }
